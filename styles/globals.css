@@ -1,26 +1,63 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import url("./components/design/header.css");
+@import url("./Home.module.css");
+@import url("./components/design/footer.css");
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
+/*Reusable css start*/
 * {
   box-sizing: border-box;
 }
+.flex {
+  display: flex;
+}
+.justifycenter {
+  justify-content: center;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mx-1 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.my-half {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.my-1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 5rem;
+}
+.aligncenter {
+  align-items: center;
+}
+.sharp-radius {
+  border-radius: 0;
+}
+.no-txt-decor {
+  text-decoration: none;
+}
+.cursor {
+  cursor: pointer;
+}
+.bg-red {
+  background: Red;
+}
+/*Reusable css start*/
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+#nprogress {
+  position: fixed;
+  z-index: 3;
+  width: 100vw;
+  top: 0;
+}
+#nprogress .bar {
+  background: rgb(18, 18, 18);
+  height: 5px;
 }
