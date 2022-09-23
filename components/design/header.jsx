@@ -7,7 +7,7 @@ import {
   UnstyledButton,
   Text,
   SimpleGrid,
-  ThemeIcon,
+  // ThemeIcon,
   // Anchor,
   Divider,
   Center,
@@ -17,23 +17,23 @@ import {
   Collapse,
   ScrollArea,
 } from "@mantine/core";
-import { MantineLogo } from "@mantine/ds";
+// import { MantineLogo } from "@mantine/ds";
 import {
   useDisclosure,
   // useMediaQuery
 } from "@mantine/hooks";
 import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
+  // IconNotification,
+  // IconCode,
+  // IconBook,
+  // IconChartPie3,
+  // IconFingerprint,
+  // IconCoin,
   IconChevronDown,
 } from "@tabler/icons";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../store/globalstate";
-import { ACTIONS } from "../../store/actions";
+import { ACTIONS, sendMail } from "../../store/actions";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -106,40 +106,41 @@ const useStyles = createStyles((theme) => ({
 
 const mockdata = [
   {
-    icon: IconCode,
-    title: "Open source",
-    description: "This Pokémon’s cry is very loud and distracting",
+    // icon: ,
+    title: "English Beginner",
+    description: "Learn English Live, In Just 30 Days",
   },
   {
-    icon: IconCoin,
-    title: "Free for everyone",
-    description: "The fluid of Smeargle’s tail secretions changes",
+    title: "English Advanced",
+    description: "Learn English Live, In Just 30 Days",
   },
   {
-    icon: IconBook,
-    title: "Documentation",
-    description: "Yanma is capable of seeing 360 degrees without",
+    title: "Hindi Beginner",
+    description: "Learn Hindi Live, In Just 30 Days",
   },
   {
-    icon: IconFingerprint,
-    title: "Security",
-    description: "The shell’s rounded shape and the grooves on its.",
-  },
-  {
-    icon: IconChartPie3,
-    title: "Analytics",
-    description: "This Pokémon uses its flying ability to quickly chase",
-  },
-  {
-    icon: IconNotification,
-    title: "Notifications",
-    description: "Combusken battles with the intensely hot flames it spews",
+    title: "Hindi Advanced",
+    description: "Learn Hindi Live, In Just 30 Days",
   },
 ];
 
 export default function HeaderMegaMenu() {
   const { dispatch, state } = useContext(DataContext);
-  const handleDemoPopup = () => {
+  useEffect(() => {
+    emailCondition();
+  }, []);
+  const emailCondition = () => {
+    const visitor = localStorage.getItem("visitor");
+    if (!visitor) {
+      localStorage.setItem("visitor", new Date().getDay());
+      sendMail("visitor", "new visitor");
+    } else if (new Date().getDay() !== Number(visitor)) {
+      sendMail("visitor", "regular visitor");
+      localStorage.setItem("visitor", new Date().getDay());
+    }
+  };
+  const handleDemoPopup = (message) => {
+    sendMail("event", message);
     dispatch({ type: ACTIONS.DEMOPOPUP, payload: !state.demoPopup });
   };
   // const isDesk = useMediaQuery("(min-width: 80rem)");
@@ -152,10 +153,14 @@ export default function HeaderMegaMenu() {
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group noWrap align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
+        {/* <ThemeIcon size={34} variant="default" radius="md">
           <item.icon size={22} color={theme.fn.primaryColor()} />
-        </ThemeIcon>
-        <div>
+        </ThemeIcon> */}
+        <div
+          onClick={() =>
+            sendMail("event", `Clicked Header's ${item.title} Option`)
+          }
+        >
           <Text size="sm" weight={500}>
             {item.title}
           </Text>
@@ -171,17 +176,34 @@ export default function HeaderMegaMenu() {
     <Box pb={0}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: "100%" }}>
-          <MantineLogo size={30} />
+          {/* <MantineLogo size={30} /> */}
+          <p>sd</p>
 
           <Group
             sx={{ height: "100%" }}
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <a href="#" className={classes.link}>
+            <a
+              href="#Demo"
+              className={classes.link}
+              onClick={() =>
+                handleDemoPopup(
+                  "Clicked Header For Desktop's Learn English Button"
+                )
+              }
+            >
               Learn English
             </a>
-            <a href="#" className={classes.link}>
+            <a
+              href="#Demo"
+              className={classes.link}
+              onClick={() =>
+                handleDemoPopup(
+                  "Clicked Header For Desktop's Learn Hindi Button"
+                )
+              }
+            >
               Learn Hindi
             </a>
             <HoverCard
@@ -194,7 +216,16 @@ export default function HeaderMegaMenu() {
               <HoverCard.Target>
                 <a href="#" className={classes.link}>
                   <Center inline>
-                    <Box component="span" mr={5}>
+                    <Box
+                      component="span"
+                      mr={5}
+                      onClick={() =>
+                        sendMail(
+                          "event",
+                          "Clicked Header for Desktop's Languages Button"
+                        )
+                      }
+                    >
                       Languages
                     </Box>
                     <IconChevronDown
@@ -238,7 +269,13 @@ export default function HeaderMegaMenu() {
                 </div> */}
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#" className={classes.link}>
+            <a
+              href="#AboutUs"
+              className={classes.link}
+              onClick={() =>
+                sendMail("event", "Clicked Header for Desktop's AboutUs Button")
+              }
+            >
               About us
             </a>
             {/* <a href="#" className={classes.link}>
@@ -248,7 +285,15 @@ export default function HeaderMegaMenu() {
 
           <Group className={classes.hiddenMobile}>
             {/* <Button variant="default">Log in</Button> */}
-            <Button onClick={handleDemoPopup}>REGISTER FOR FREE DEMO</Button>
+            <Button
+              onClick={() =>
+                handleDemoPopup(
+                  "Clicked Header for Desktop's Register for Demo Button"
+                )
+              }
+            >
+              REGISTER FOR FREE DEMO
+            </Button>
           </Group>
 
           <Burger
@@ -266,7 +311,7 @@ export default function HeaderMegaMenu() {
         padding="md"
         title="Navigation"
         className={classes.hiddenDesktop}
-        zIndex={1000000}
+        // zIndex={1}
       >
         <ScrollArea sx={{ height: "calc(100vh - 60px)" }} mx="-md">
           <Divider
@@ -274,22 +319,51 @@ export default function HeaderMegaMenu() {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <a href="#" className={classes.link}>
+          <a
+            href="#Demo"
+            className={classes.link}
+            onClick={() =>
+              handleDemoPopup(
+                "Clicked Header for Mobile's Learn English Button"
+              )
+            }
+          >
             Learn English
           </a>
-          <a href="#" className={classes.link}>
+          <a
+            href="#Demo"
+            className={classes.link}
+            onClick={() =>
+              handleDemoPopup("Clicked Header for Mobile's Learn Hindi Button")
+            }
+          >
             Learn Hindi
           </a>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
-              <Box component="span" mr={5}>
+              <Box
+                component="span"
+                mr={5}
+                onClick={() =>
+                  sendMail(
+                    "event",
+                    "Clicked Header for Mobile's Languages Button"
+                  )
+                }
+              >
                 Languages
               </Box>
               <IconChevronDown size={16} color={theme.fn.primaryColor()} />
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
+          <a
+            href="#AboutUs"
+            className={classes.link}
+            onClick={() =>
+              sendMail("event", "Clicked Header for Mobile's AboutUs Button")
+            }
+          >
             About us
           </a>
           {/* <a href="#" className={classes.link}>
@@ -303,7 +377,15 @@ export default function HeaderMegaMenu() {
 
           <Group position="center" grow pb="xl" px="md">
             {/* <Button variant="default">Log in</Button> */}
-            <Button onClick={handleDemoPopup}>REGISTER FOR FREE DEMO</Button>
+            <Button
+              onClick={() =>
+                handleDemoPopup(
+                  "Clicked Header for Mobile's Register for Demo Button"
+                )
+              }
+            >
+              REGISTER FOR FREE DEMO
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>

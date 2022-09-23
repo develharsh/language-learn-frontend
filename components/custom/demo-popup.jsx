@@ -1,28 +1,33 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../store/globalstate";
-import { ACTIONS } from "../../store/actions";
+import { ACTIONS, LearnerRegisterForDemo } from "../../store/actions";
 import { Modal, Button, TextInput, Select, Grid } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { IconAt } from "@tabler/icons";
-
-const countries = [
-  "India",
-  "Sri Lanka",
-  "Pakistan",
-  "USA",
-  "England",
-  "Britain",
-];
-
-const states = ["Uttar Pradesh", "Madhya Pradesh", "Bihar", "Maharashtra"];
+import { showNotification } from "@mantine/notifications";
+import { IconCheck, IconX, IconAt } from "@tabler/icons";
+import { Country, State } from "country-state-city";
 
 const CoursesJSON = [
   { value: "HINDI-BEGINNER", label: "Hindi Beginner" },
+  { value: "HINDI-ADVANCED", label: "Hindi Advanced" },
   { value: "ENGLISH-BEGINNER", label: "English Beginner" },
+  { value: "ENGLISH-ADVANCED", label: "English Advanced" },
 ];
 
 const DemoPopup = () => {
   const { dispatch, state } = useContext(DataContext);
+  const [loading, setLoading] = useState(false);
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    setCountries(
+      Country.getAllCountries().map((each) =>
+        Object({ label: each.name, value: each.isoCode })
+      )
+    );
+  }, []);
+
   const form = useForm({
     initialValues: {
       Name: "",
@@ -48,6 +53,43 @@ const DemoPopup = () => {
         value?.length ? null : "Enrolling For can't be empty",
     },
   });
+
+  useEffect(() => {
+    if (form.values.Country) {
+      setStates(
+        State.getStatesOfCountry(form.values.Country).map((each) =>
+          Object({ label: each.name, value: each.isoCode })
+        )
+      );
+      // alert(form.values.Country);
+    }
+    // alert("Dummy");
+  }, [form.values.Country]);
+
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    dispatch({ type: ACTIONS.LOADING, payload: true });
+    const response = await LearnerRegisterForDemo(values);
+    dispatch({ type: ACTIONS.LOADING, payload: false });
+    setLoading(false);
+    if (response.success) {
+      showNotification({
+        title: "Congrats",
+        message: response.message,
+        color: "teal",
+        icon: <IconCheck />,
+      });
+      form.reset();
+      dispatch({ type: ACTIONS.DEMOPOPUP, payload: false });
+    } else {
+      showNotification({
+        title: "Oops",
+        message: response.message,
+        color: "red",
+        icon: <IconX />,
+      });
+    }
+  };
   return (
     <>
       <Modal
@@ -55,7 +97,7 @@ const DemoPopup = () => {
         onClose={() => dispatch({ type: ACTIONS.DEMOPOPUP, payload: false })}
         title="Free Demo Registration - Limited Seats Only"
       >
-        <form onSubmit={form.onSubmit((v) => console.log(v))}>
+        <form onSubmit={form.onSubmit((v) => handleSubmit(v))}>
           <TextInput
             name="Name"
             withAsterisk
@@ -135,7 +177,7 @@ const DemoPopup = () => {
             {...form.getInputProps("EnrollingFor")}
           />
           <div className="my-1">
-            <Button fullWidth type="submit">
+            <Button fullWidth type="submit" loading={loading}>
               Register
             </Button>
           </div>

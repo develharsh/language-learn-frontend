@@ -15,7 +15,9 @@ import { IconBrandWhatsapp, IconCheck } from "@tabler/icons";
 import image from "../public/assets/home-first.svg";
 import { useContext } from "react";
 import { DataContext } from "../store/globalstate";
-import { ACTIONS } from "../store/actions";
+import Link from "next/link";
+import { ACTIONS, sendMail } from "../store/actions";
+import { useMediaQuery } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -67,18 +69,21 @@ const useStyles = createStyles((theme) => ({
 
 const Home = () => {
   const { dispatch, state } = useContext(DataContext);
+  const isDesk = useMediaQuery("(min-width: 80rem)");
+  const isTab = useMediaQuery("(min-width: 40rem)");
   const handleDemoPopup = () => {
+    sendMail("event", "Clicked HomePage's Register for Demo Button");
     dispatch({ type: ACTIONS.DEMOPOPUP, payload: !state.demoPopup });
   };
   return (
     <>
       <Seo title="Harshvardhan Singh's personal homepage - Musings on tech, economics, finance, business, and life" />
-      <Comp1 handleDemoPopup={handleDemoPopup} />
+      <Comp1 handleDemoPopup={handleDemoPopup} isDesk={isDesk} isTab={isTab} />
     </>
   );
 };
 
-const Comp1 = ({ handleDemoPopup }) => {
+const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
   const { classes } = useStyles();
   return (
     <div>
@@ -128,16 +133,33 @@ const Comp1 = ({ handleDemoPopup }) => {
               >
                 REGISTER FOR FREE DEMO
               </Button>
-              <Button
-                // variant="default"
-                leftIcon={<IconBrandWhatsapp />}
-                color="green"
-                radius="xl"
-                size="md"
-                className={classes.control}
-              >
-                CHAT WITH US
-              </Button>
+              <Link href="https://wa.me/+918077015752?text=Hi%20Languate%0A">
+                <a
+                  target={"_blank"}
+                  style={
+                    isDesk || isTab
+                      ? { width: "fit-content" }
+                      : { width: "100%" }
+                  }
+                >
+                  <Button
+                    sx={{ width: "100%" }}
+                    leftIcon={<IconBrandWhatsapp />}
+                    color="green"
+                    radius="xl"
+                    size="md"
+                    className={classes.control}
+                    onClick={() =>
+                      sendMail(
+                        "event",
+                        "Clicked HomePage's Chat with us Button"
+                      )
+                    }
+                  >
+                    CHAT WITH US
+                  </Button>
+                </a>
+              </Link>
             </Group>
           </div>
           <Image src={image.src} className={classes.image} />
