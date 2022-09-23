@@ -77,7 +77,7 @@ const Home = () => {
   };
   return (
     <>
-      <Seo title="Harshvardhan Singh's personal homepage - Musings on tech, economics, finance, business, and life" />
+      <Seo title="Languate - Learn Any Language Live, in Just 30 Days" />
       <Comp1 handleDemoPopup={handleDemoPopup} isDesk={isDesk} isTab={isTab} />
     </>
   );

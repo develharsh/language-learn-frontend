@@ -1,7 +1,16 @@
+.header-logo {
+  height: 1.5rem;
+}
 /* tab */
 @media (min-width: 40rem) {
+  .header-logo {
+    height: 1rem;
+  }
 }
 
 /*lap */
 @media (min-width: 80rem) {
+  .header-logo {
+    height: 1.5rem;
+  }
 }

@@ -34,6 +34,7 @@ import {
 import { useContext, useEffect } from "react";
 import { DataContext } from "../../store/globalstate";
 import { ACTIONS, sendMail } from "../../store/actions";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -177,7 +178,11 @@ export default function HeaderMegaMenu() {
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: "100%" }}>
           {/* <MantineLogo size={30} /> */}
-          <p>sd</p>
+          <Link href="/">
+            <a className="no-txt-decor">
+              <img src="/assets/logo.png" alt="languate" className="header-logo"/>
+            </a>
+          </Link>
 
           <Group
             sx={{ height: "100%" }}

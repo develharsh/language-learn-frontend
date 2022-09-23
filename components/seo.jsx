@@ -1,48 +1,48 @@
 import Head from "next/head";
+import Script from "next/script";
 const Seo = ({ title }) => {
   return (
-    <Head>
-      <title>{title}</title>
-      <meta property="og:title" content={title} />
-      <link
-        rel="icon"
-        href="https://media-exp1.licdn.com/dms/image/C4D03AQEGLgrAjJAXxA/profile-displayphoto-shrink_800_800/0/1662497414233?e=1668643200&amp;v=beta&amp;t=CZ10RzvMqinH_Rb8iRbdP61jGzzFTyStisCSQyi7Wuo"
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <link rel="icon" href="/assets/icon.png" />
+        <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon" />
+        {/* <meta name="theme-color" content="purple" /> */}
+        {/* <link rel="canonical" href="https://languate.vercel.app" /> */}
+        <meta property="og:url" content="https://languate.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/assets/icon.png" />
+        <meta
+          property="og:description"
+          name="description"
+          content="Languate is an online communication skills &amp; languages learning platform. Learn Any Language, In Just 30 Days"
+        />
+        <meta name="lang" content="en" />
+        <meta
+          name="keywords"
+          content="Languate, Learn English, Learn Hindi, Learn Any Language, Languages, Communication Skills"
+        />
+        <meta
+          name="google-site-verification"
+          content="OgShE7U8t-6p_xQPo7x8UxS-XQqcoC4IPfm86y-6cr0"
+        />
+      </Head>
+      {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-TXE0CJNKWC"
+        strategy="afterInteractive"
       />
-      <link
-        rel="shortcut icon"
-        href="https://media-exp1.licdn.com/dms/image/C4D03AQEGLgrAjJAXxA/profile-displayphoto-shrink_800_800/0/1662497414233?e=1668643200&amp;v=beta&amp;t=CZ10RzvMqinH_Rb8iRbdP61jGzzFTyStisCSQyi7Wuo"
-        type="image/x-icon"
-      />
-      {/* <meta name="theme-color" content="purple" /> */}
-      <link rel="canonical" href="https://www.harshvsingh.me" />
-      <meta property="og:url" content="https://www.harshvsingh.me" />
-      <meta property="og:type" content="website" />
-      <meta
-        property="og:image"
-        content="https://media-exp1.licdn.com/dms/image/C4D03AQEGLgrAjJAXxA/profile-displayphoto-shrink_800_800/0/1662497414233?e=1668643200&amp;v=beta&amp;t=CZ10RzvMqinH_Rb8iRbdP61jGzzFTyStisCSQyi7Wuo"
-      />
-      <meta
-        name="description"
-        content="I am Harsh, and currently working as Full Stack Developer. This is my
-          personal homepage. I love exploring, learning &amp; talking about
-          markets, economy, finance, consumer behaviour, investments, tech,
-          startups and much more"
-      />
-      <meta
-        property="og:description"
-        name="description"
-        content="I am Harsh, and currently working as Full Stack Developer. This is my
-          personal homepage. I love exploring, learning &amp; talking about
-          markets, economy, finance, consumer behaviour, investments, tech,
-          startups and much more"
-      />
-      <meta name="lang" content="en" />
-      <meta name="keywords" content="Harshvardhan Singh, Blogs, Musing" />
-      <meta
-        name="google-site-verification"
-        content="eFVLIiMdXuJDGWylPTLGCunY35ZXVD2iz5LnG_Ns-RI"
-      />
-    </Head>
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-TXE0CJNKWC');
+        `}
+      </Script>
+    </>
   );
 };
 export default Seo;
