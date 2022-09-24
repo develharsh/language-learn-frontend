@@ -1,5 +1,6 @@
 .header-logo {
   height: 1.5rem;
+  /* border: 1px solid red; */
 }
 /* tab */
 @media (min-width: 40rem) {

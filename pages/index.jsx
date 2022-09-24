@@ -13,10 +13,13 @@ import {
 } from "@mantine/core";
 import { IconBrandWhatsapp, IconCheck } from "@tabler/icons";
 import image from "../public/assets/home-first.svg";
-import { useContext } from "react";
-import { DataContext } from "../store/globalstate";
+// import { useContext } from "react";
+// import { DataContext } from "../store/globalstate";
 import Link from "next/link";
-import { ACTIONS, sendMail } from "../store/actions";
+import {
+  // ACTIONS,
+  sendMail,
+} from "../store/actions";
 import { useMediaQuery } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
@@ -68,22 +71,22 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Home = () => {
-  const { dispatch, state } = useContext(DataContext);
+  // const { dispatch, state } = useContext(DataContext);
   const isDesk = useMediaQuery("(min-width: 80rem)");
   const isTab = useMediaQuery("(min-width: 40rem)");
-  const handleDemoPopup = () => {
-    sendMail("event", "Clicked HomePage's Register for Demo Button");
-    dispatch({ type: ACTIONS.DEMOPOPUP, payload: !state.demoPopup });
-  };
+  // const handleDemoPopup = () => {
+  //   sendMail("event", "Clicked HomePage's Register for Demo Button");
+  //   dispatch({ type: ACTIONS.DEMOPOPUP, payload: !state.demoPopup });
+  // };
   return (
     <>
-      <Seo title="Languate - Learn Any Language Live, in Just 30 Days" />
-      <Comp1 handleDemoPopup={handleDemoPopup} isDesk={isDesk} isTab={isTab} />
+      <Seo title="SpeakLikePro - Learn English Language, in Just 30 Days" />
+      <Comp1 isDesk={isDesk} isTab={isTab} />
     </>
   );
 };
 
-const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
+const Comp1 = ({ isDesk, isTab }) => {
   const { classes } = useStyles();
   return (
     <div>
@@ -91,9 +94,10 @@ const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              Learn Any Language{" "}
-              <span className={classes.highlight}>Live </span>
-              in just 30 Days
+              Learn <span className={classes.highlight}>English </span>
+              in just
+              <br />
+              30 Days
             </Title>
             <Text color="dimmed" mt="md">
               Join Our Live Classes, and learn any language by just spending
@@ -125,14 +129,30 @@ const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
             </List>
 
             <Group mt={30}>
-              <Button
-                radius="xl"
-                size="md"
-                className={classes.control}
-                onClick={handleDemoPopup}
-              >
-                REGISTER FOR FREE DEMO
-              </Button>
+              <Link href="/learn/english">
+                <a
+                  style={
+                    isDesk || isTab
+                      ? { width: "fit-content" }
+                      : { width: "100%" }
+                  }
+                >
+                  <Button
+                    sx={{ width: "100%" }}
+                    radius="xl"
+                    size="md"
+                    className={classes.control}
+                    onClick={() =>
+                      sendMail(
+                        "event",
+                        "Clicked HomePage's View English Course Details Button"
+                      )
+                    }
+                  >
+                    View Course Details
+                  </Button>
+                </a>
+              </Link>
               <Link href="https://wa.me/+917668462359">
                 <a
                   target={"_blank"}
@@ -150,13 +170,10 @@ const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
                     size="md"
                     className={classes.control}
                     onClick={() =>
-                      sendMail(
-                        "event",
-                        "Clicked HomePage's Chat with us Button"
-                      )
+                      sendMail("event", "Clicked HomePage's Ask More Button")
                     }
                   >
-                    CHAT WITH US
+                    Ask More
                   </Button>
                 </a>
               </Link>

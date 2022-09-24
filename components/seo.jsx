@@ -9,27 +9,24 @@ const Seo = ({ title }) => {
         <link rel="icon" href="/assets/icon.png" />
         <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon" />
         {/* <meta name="theme-color" content="purple" /> */}
-        {/* <link rel="canonical" href="https://languate.vercel.app" /> */}
-        <meta property="og:url" content="https://languate.vercel.app" />
+        <link rel="canonical" href="https://www.speaklike.pro" />
+        <meta property="og:url" content="https://www.speaklike.pro" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/assets/icon.png" />
         <meta
           property="og:description"
           name="description"
-          content="Languate is an online communication skills &amp; languages learning platform. Learn Any Language, In Just 30 Days"
+          content="SpeakLikePro is an leading online English language learning platform, where anyone can learn english in just 30 days."
         />
         <meta name="lang" content="en" />
-        <meta
-          name="keywords"
-          content="Languate, Learn English, Learn Hindi, Learn Any Language, Languages, Communication Skills"
-        />
-        <meta
+        <meta name="keywords" content="SpeakLikePro, Learn English" />
+        {/* <meta
           name="google-site-verification"
           content="OgShE7U8t-6p_xQPo7x8UxS-XQqcoC4IPfm86y-6cr0"
-        />
+        /> */}
       </Head>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-      <Script
+      {/* <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-TXE0CJNKWC"
         strategy="afterInteractive"
       />
@@ -41,7 +38,7 @@ const Seo = ({ title }) => {
 
           gtag('config', 'G-TXE0CJNKWC');
         `}
-      </Script>
+      </Script> */}
     </>
   );
 };

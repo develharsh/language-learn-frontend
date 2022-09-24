@@ -108,24 +108,9 @@ const useStyles = createStyles((theme) => ({
 const mockdata = [
   {
     // icon: ,
-    title: "English Beginner",
+    title: "English",
     description: "Learn English Live, In Just 30 Days",
-    course: "ENGLISH-BEGINNER",
-  },
-  {
-    title: "English Advanced",
-    description: "Learn English Live, In Just 30 Days",
-    course: "ENGLISH-ADVANCED",
-  },
-  {
-    title: "Hindi Beginner",
-    description: "Learn Hindi Live, In Just 30 Days",
-    course: "HINDI-BEGINNER",
-  },
-  {
-    title: "Hindi Advanced",
-    description: "Learn Hindi Live, In Just 30 Days",
-    course: "HINDI-ADVANCED",
+    course: "ENGLISH",
   },
 ];
 
@@ -157,7 +142,7 @@ export default function HeaderMegaMenu() {
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
-      <Link href={`/course/${item.course.toLowerCase()}`}>
+      <Link href={`/learn/${item.course.toLowerCase()}`}>
         <a className="no-txt-decor">
           <Group noWrap align="flex-start">
             {/* <ThemeIcon size={34} variant="default" radius="md">
@@ -201,30 +186,19 @@ export default function HeaderMegaMenu() {
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <a
-              href="/course/english-beginner"
-              className={classes.link}
-              onClick={() =>
-                sendMail(
-                  "event",
-                  "Clicked Header For Desktop's Learn English Button"
-                )
-              }
-            >
-              Learn English
-            </a>
-            <a
-              href="/course/hindi-beginner"
-              className={classes.link}
-              onClick={() =>
-                sendMail(
-                  "event",
-                  "Clicked Header For Desktop's Learn Hindi Button"
-                )
-              }
-            >
-              Learn Hindi
-            </a>
+            <Link href="/learn/english">
+              <a
+                className={classes.link}
+                onClick={() =>
+                  sendMail(
+                    "event",
+                    "Clicked Header For Desktop's Learn English Button"
+                  )
+                }
+              >
+                Learn English
+              </a>
+            </Link>
             <HoverCard
               width={600}
               position="bottom"
@@ -288,15 +262,19 @@ export default function HeaderMegaMenu() {
                 </div> */}
               </HoverCard.Dropdown>
             </HoverCard>
-            <a
-              href="#AboutUs"
-              className={classes.link}
-              onClick={() =>
-                sendMail("event", "Clicked Header for Desktop's AboutUs Button")
-              }
-            >
-              About us
-            </a>
+            <Link href="/about-us">
+              <a
+                className={classes.link}
+                onClick={() =>
+                  sendMail(
+                    "event",
+                    "Clicked Header for Desktop's About Us Button"
+                  )
+                }
+              >
+                About Us
+              </a>
+            </Link>
             {/* <a href="#" className={classes.link}>
               Our Team
             </a> */}
@@ -307,11 +285,11 @@ export default function HeaderMegaMenu() {
             <Button
               onClick={() =>
                 handleDemoPopup(
-                  "Clicked Header for Desktop's Register for Demo Button"
+                  "Clicked Header for Desktop's FREE DEMO English Button"
                 )
               }
             >
-              REGISTER FOR FREE DEMO
+              Free Demo of English Class
             </Button>
           </Group>
 
@@ -337,31 +315,19 @@ export default function HeaderMegaMenu() {
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
-
-          <a
-            href="/course/english-beginner"
-            className={classes.link}
-            onClick={() =>
-              sendMail(
-                "event",
-                "Clicked Header for Mobile's Learn English Button"
-              )
-            }
-          >
-            Learn English
-          </a>
-          <a
-            href="/course/hindi-beginner"
-            className={classes.link}
-            onClick={() =>
-              sendMail(
-                "event",
-                "Clicked Header for Mobile's Learn Hindi Button"
-              )
-            }
-          >
-            Learn Hindi
-          </a>
+          <Link href="/learn/english">
+            <a
+              className={classes.link}
+              onClick={() =>
+                sendMail(
+                  "event",
+                  "Clicked Header for Mobile's Learn English Button"
+                )
+              }
+            >
+              Learn English
+            </a>
+          </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
               <Box
@@ -380,15 +346,16 @@ export default function HeaderMegaMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a
-            href="#AboutUs"
-            className={classes.link}
-            onClick={() =>
-              sendMail("event", "Clicked Header for Mobile's AboutUs Button")
-            }
-          >
-            About us
-          </a>
+          <Link href="/about-us">
+            <a
+              className={classes.link}
+              onClick={() =>
+                sendMail("event", "Clicked Header for Mobile's About Us Button")
+              }
+            >
+              About Us
+            </a>
+          </Link>
           {/* <a href="#" className={classes.link}>
             Academy
           </a> */}
@@ -403,11 +370,11 @@ export default function HeaderMegaMenu() {
             <Button
               onClick={() =>
                 handleDemoPopup(
-                  "Clicked Header for Mobile's Register for Demo Button"
+                  "Clicked Header for Desktop's FREE DEMO English Button"
                 )
               }
             >
-              REGISTER FOR FREE DEMO
+              Free Demo of English Class
             </Button>
           </Group>
         </ScrollArea>
