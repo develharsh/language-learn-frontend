@@ -9,8 +9,8 @@ const Seo = ({ title }) => {
         <link rel="icon" href="/assets/icon.png" />
         <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon" />
         {/* <meta name="theme-color" content="purple" /> */}
-        <link rel="canonical" href="https://www.speaklike.pro" />
-        <meta property="og:url" content="https://www.speaklike.pro" />
+        {/* <link rel="canonical" href="https://www.speaklike.pro" /> */}
+        {/* <meta property="og:url" content="https://www.speaklike.pro" /> */}
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/assets/icon.png" />
         <meta
