@@ -41,8 +41,8 @@ export default function FooterCentered() {
     { label: "Blog", link: "/blog" },
     { label: "About Us", link: "/about-us" },
     { label: "Careers", link: "/careers" },
-  ].map((link) => (
-    <Link href={link.link}>
+  ].map((link, idx) => (
+    <Link href={link.link} key={idx}>
       <a className="footer-link">{link.label}</a>
     </Link>
   ));
@@ -54,7 +54,7 @@ export default function FooterCentered() {
           <a className="no-txt-decor">
             <img
               src="/assets/logo.png"
-              alt="languate"
+              alt="SpeakLikePro www.speaklike.pro"
               className="header-logo"
             />
           </a>

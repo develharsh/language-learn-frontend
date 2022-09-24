@@ -179,7 +179,7 @@ const Comp1 = ({ isDesk, isTab }) => {
               </Link>
             </Group>
           </div>
-          <Image src={image.src} className={classes.image} />
+          <Image src={image.src} alt="SpeakLikePro www.speaklike.pro Home" className={classes.image} />
         </div>
       </Container>
     </div>

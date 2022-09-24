@@ -175,7 +175,7 @@ export default function HeaderMegaMenu() {
             <a className="no-txt-decor">
               <img
                 src="/assets/logo.png"
-                alt="languate"
+                alt="SpeakLikePro www.speaklike.pro"
                 className="header-logo"
               />
             </a>
