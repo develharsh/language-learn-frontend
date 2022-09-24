@@ -110,18 +110,22 @@ const mockdata = [
     // icon: ,
     title: "English Beginner",
     description: "Learn English Live, In Just 30 Days",
+    course: "ENGLISH-BEGINNER",
   },
   {
     title: "English Advanced",
     description: "Learn English Live, In Just 30 Days",
+    course: "ENGLISH-ADVANCED",
   },
   {
     title: "Hindi Beginner",
     description: "Learn Hindi Live, In Just 30 Days",
+    course: "HINDI-BEGINNER",
   },
   {
     title: "Hindi Advanced",
     description: "Learn Hindi Live, In Just 30 Days",
+    course: "HINDI-ADVANCED",
   },
 ];
 
@@ -153,23 +157,27 @@ export default function HeaderMegaMenu() {
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group noWrap align="flex-start">
-        {/* <ThemeIcon size={34} variant="default" radius="md">
+      <Link href={`/course/${item.course.toLowerCase()}`}>
+        <a className="no-txt-decor">
+          <Group noWrap align="flex-start">
+            {/* <ThemeIcon size={34} variant="default" radius="md">
           <item.icon size={22} color={theme.fn.primaryColor()} />
         </ThemeIcon> */}
-        <div
-          onClick={() =>
-            sendMail("event", `Clicked Header's ${item.title} Option`)
-          }
-        >
-          <Text size="sm" weight={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" color="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
+            <div
+              onClick={() =>
+                sendMail("event", `Clicked Header's ${item.title} Option`)
+              }
+            >
+              <Text size="sm" weight={500} color="#228be6">
+                {item.title}
+              </Text>
+              <Text size="xs" color="dimmed">
+                {item.description}
+              </Text>
+            </div>
+          </Group>
+        </a>
+      </Link>
     </UnstyledButton>
   ));
 
@@ -180,7 +188,11 @@ export default function HeaderMegaMenu() {
           {/* <MantineLogo size={30} /> */}
           <Link href="/">
             <a className="no-txt-decor">
-              <img src="/assets/logo.png" alt="languate" className="header-logo"/>
+              <img
+                src="/assets/logo.png"
+                alt="languate"
+                className="header-logo"
+              />
             </a>
           </Link>
 
@@ -190,10 +202,11 @@ export default function HeaderMegaMenu() {
             className={classes.hiddenMobile}
           >
             <a
-              href="#Demo"
+              href="/course/english-beginner"
               className={classes.link}
               onClick={() =>
-                handleDemoPopup(
+                sendMail(
+                  "event",
                   "Clicked Header For Desktop's Learn English Button"
                 )
               }
@@ -201,10 +214,11 @@ export default function HeaderMegaMenu() {
               Learn English
             </a>
             <a
-              href="#Demo"
+              href="/course/hindi-beginner"
               className={classes.link}
               onClick={() =>
-                handleDemoPopup(
+                sendMail(
+                  "event",
                   "Clicked Header For Desktop's Learn Hindi Button"
                 )
               }
@@ -325,10 +339,11 @@ export default function HeaderMegaMenu() {
           />
 
           <a
-            href="#Demo"
+            href="/course/english-beginner"
             className={classes.link}
             onClick={() =>
-              handleDemoPopup(
+              sendMail(
+                "event",
                 "Clicked Header for Mobile's Learn English Button"
               )
             }
@@ -336,10 +351,13 @@ export default function HeaderMegaMenu() {
             Learn English
           </a>
           <a
-            href="#Demo"
+            href="/course/hindi-beginner"
             className={classes.link}
             onClick={() =>
-              handleDemoPopup("Clicked Header for Mobile's Learn Hindi Button")
+              sendMail(
+                "event",
+                "Clicked Header for Mobile's Learn Hindi Button"
+              )
             }
           >
             Learn Hindi

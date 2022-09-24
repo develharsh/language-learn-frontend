@@ -133,7 +133,7 @@ const Comp1 = ({ handleDemoPopup, isDesk, isTab }) => {
               >
                 REGISTER FOR FREE DEMO
               </Button>
-              <Link href="https://wa.me/+918077015752?text=Hi%20Languate%0A">
+              <Link href="https://wa.me/+917668462359">
                 <a
                   target={"_blank"}
                   style={
