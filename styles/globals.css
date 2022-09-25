@@ -58,6 +58,6 @@
   top: 0;
 }
 #nprogress .bar {
-  background: rgb(18, 18, 18);
+  background: #228be6;
   height: 5px;
 }
