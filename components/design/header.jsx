@@ -143,7 +143,7 @@ export default function HeaderMegaMenu() {
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Link href={`/learn/${item.course.toLowerCase()}`}>
-        <a className="no-txt-decor">
+        <a className="no-txt-decor" onClick={closeDrawer}>
           <Group noWrap align="flex-start">
             {/* <ThemeIcon size={34} variant="default" radius="md">
           <item.icon size={22} color={theme.fn.primaryColor()} />
@@ -318,12 +318,13 @@ export default function HeaderMegaMenu() {
           <Link href="/learn/english">
             <a
               className={classes.link}
-              onClick={() =>
+              onClick={() => {
+                closeDrawer();
                 sendMail(
                   "event",
                   "Clicked Header for Mobile's Learn English Button"
-                )
-              }
+                );
+              }}
             >
               Learn English
             </a>
@@ -349,9 +350,13 @@ export default function HeaderMegaMenu() {
           <Link href="/about-us">
             <a
               className={classes.link}
-              onClick={() =>
-                sendMail("event", "Clicked Header for Mobile's About Us Button")
-              }
+              onClick={() => {
+                closeDrawer();
+                sendMail(
+                  "event",
+                  "Clicked Header for Mobile's About Us Button"
+                );
+              }}
             >
               About Us
             </a>
@@ -368,11 +373,12 @@ export default function HeaderMegaMenu() {
           <Group position="center" grow pb="xl" px="md">
             {/* <Button variant="default">Log in</Button> */}
             <Button
-              onClick={() =>
+              onClick={() => {
+                closeDrawer();
                 handleDemoPopup(
                   "Clicked Header for Desktop's FREE DEMO English Button"
-                )
-              }
+                );
+              }}
             >
               Free Demo of English Class
             </Button>
